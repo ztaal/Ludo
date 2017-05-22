@@ -1,2 +1,6 @@
-# Ludo
-Ludo player using q-learning developed for the AI2 course at SDU.
+AI2 - Tools of Artificial Intelligence
+====
+University of Southern Denmark
+
+LUDO GUI
+========
