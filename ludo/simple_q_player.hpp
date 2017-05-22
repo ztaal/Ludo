@@ -23,13 +23,13 @@ private:
     int dice_roll;
 
     int iterations;
-    // bool training = true;
-    // double EXPLORE_RATE = 0.9;
-    bool training = false;
-    double EXPLORE_RATE = 0;
+    bool training = true;
+    double EXPLORE_RATE = 0.9;
+    // bool training = false;
+    // double EXPLORE_RATE = 0;
     double EXPLORE_RATE_DECAY;
     // double DISCOUNT_FACTOR = 0.95;
-    double DISCOUNT_FACTOR = 0.5;
+    double DISCOUNT_FACTOR = 0.4;
     double LEARNING_RATE = 0.7;
     int make_decision();
 
@@ -53,22 +53,12 @@ public slots:
     void post_game_analysis(std::vector<int> relative_pos);
 };
 
-// States
-// 000 Home
-// 001 Other
-// 010 Star
-// 011 Globe
-// 100 Enemy globe
-// 101 Blockade
-// 110 Goal stretch
-// 111 Goal
-
 // Actions
-// 000 No action
-// 001 Move out of home
-// 010 Move
-// 011 Kill
-// 100 Suicide
-// 101 Form Blockade
-// 110 Protect token
-// 111 Move into goal
+// No action 0
+// Move out of home 1
+// Move 2
+// Kill 3
+// Suicide 4
+// Form Blockade 5
+// Protect token 6
+// Move into goal 7

@@ -260,7 +260,7 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
     }
     // Suicide
     if (previous_action == 4) {
-        reward -= 0.3;
+        reward -= 0.8;
         // std::cout << "S,";
     }
 
