@@ -28,8 +28,9 @@ private:
     bool training = false;
     double EXPLORE_RATE = 0;
     double EXPLORE_RATE_DECAY;
-    double DISCOUNT_FACTOR = 0.95;
-    double LEARNING_RATE = 0.5;
+    // double DISCOUNT_FACTOR = 0.95;
+    double DISCOUNT_FACTOR = 0.5;
+    double LEARNING_RATE = 0.7;
     int make_decision();
 
     std::vector<int> input_to_state();

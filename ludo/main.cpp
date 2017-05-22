@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     g.setGameDelay(0); //if you want to see the game, set a delay
 
     // GUI
-    // g.setGameDelay(1500); //if you want to see the game, set a delay
+    // g.setGameDelay(500); //if you want to see the game, set a delay
     // Dialog w;
     // QObject::connect(&g,SIGNAL(update_graphics(std::vector<int>)),&w,SLOT(update_graphics(std::vector<int>)));
     // QObject::connect(&g,SIGNAL(set_color(int)),                   &w,SLOT(get_color(int)));

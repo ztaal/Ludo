@@ -161,7 +161,7 @@ int simple_q_player::select_action(std::vector<std::vector<double>> q_table,
 {
     int best_action = 0;
     if (EXPLORE_RATE == 0 || (double)(rand() % 1000) / 1000.0 > EXPLORE_RATE) {
-        double max_q = 0;
+        double max_q = -10000;
         for (int i = 0; i < 4; i++) {
             if (pos_start_of_turn[i] > 55 || (pos_start_of_turn[i] == -1 && dice_roll != 6))
                 continue;
@@ -212,17 +212,17 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
     double reward = 0;
 
     // No action
-    if (action == 0) {
-        // reward -= 0.3;
+    if (previous_action == 0) {
+        // reward -= 0.05;
         // std::cout << "N,";
     }
     // Move out of home
-    if (action == 1) {
-        reward += 0.35;
+    if (previous_action == 1) {
+        reward += 0.25;
         // std::cout << "H,";
     }
     // Move piece closest to home
-    if (action != 0 && action != 1 && action != 4) {
+    if (previous_action != 0 && previous_action != 1 && previous_action != 4) {
         bool closest = true;
         for (int i = 0; i < 4; i++) {
             // if (pos_start_of_turn[decision[0]] < pos_start_of_turn[i] &&
@@ -239,28 +239,28 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
         }
     }
     // Kill
-    if (action == 3) {
+    if (previous_action == 3) {
         reward += 0.15;
         // std::cout << "K,";
     }
     // Form Blockade
-    if (action == 5) {
+    if (previous_action == 5) {
         reward += 0.05;
         // std::cout << "B,";
     }
     // Protect token
-    if (action == 6) {
+    if (previous_action == 6) {
         reward += 0.2;
         // std::cout << "P,";
     }
     // Move into goal
-    if (action == 7) {
+    if (previous_action == 7) {
         reward += 0.25;
         // std::cout << "G,";
     }
     // Suicide
-    if (action == 4) {
-        reward = -0.25;
+    if (previous_action == 4) {
+        reward -= 0.3;
         // std::cout << "S,";
     }
 
@@ -305,21 +305,26 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
 
     // Update q-table
     if (reward != 0) {
-        int new_state = state + dice_roll;
-        // q_table[action[decision[1]]][state] += LEARNING_RATE *
-        //     (reward + DISCOUNT_FACTOR * q_table[previous_action][new_state]
-        //      - q_table[action[decision[1]]][state]);
-        // std::cout << "Reward: " << reward << std::endl;
-        // std::cout << "Before: " << q_table[previous_action][previous_state] << std::endl;
-        // std::cout << "Current state: " << state << "\tCurrent Action: " << action[decision[1]] << std::endl;
-        // std::cout << "Previous state: " << previous_state << "\tPrevious Action: " << previous_action << std::endl << std::endl;
+        // int new_state = state + dice_roll;
+        // if ((state == 0 || state % 58 == 0) && dice_roll != 6) {
+        //     new_state = 58 * decision;
+        // } else if ((state == 0 || state % 58 == 0) && dice_roll == 6) {
+        //     new_state = 58 * decision + 1;
+        // } else if (new_state - (58 * decision) > 57) {
+        //     new_state = 58 + (58 * decision);
+        // }
+        // std::cout << new_state << std::endl;
+        // std::cout << "\tBefore: " << q_table[previous_action][previous_state];
+        // std::cout << "Reward: " << reward << "\tBefore: " << q_table[previous_action][previous_state];
         q_table[previous_action][previous_state] += LEARNING_RATE *
             (reward + DISCOUNT_FACTOR * q_table[action][state]
              - q_table[previous_action][previous_state]);
-        //  std::cout << "After: " << q_table[previous_action][previous_state] << std::endl;
+        //  std::cout << "\tAfter: " << q_table[previous_action][previous_state] << std::endl;
+        //  std::cout << "\tAfter: " << q_table[previous_action][previous_state];
     }
     previous_state = state;
     previous_action = action;
+    // static bool game_saved = true;
     static bool game_saved = false;
     if (games_played == iterations - 1 && !game_saved) {
         std::string filename = "../simple_q_table" + std::to_string(iterations);
@@ -346,18 +351,18 @@ int simple_q_player::make_decision()
             // }
         } else {
             q_table = load_qtable("../simple_q_table100000");
-            for(int j = 0; j < 232; j++) {
-                if (j % 58 == 0 || j == 0) {
-                    std::cout << "\nNext player\n";
-                    std::cout << "\tNA\t\tH\t\tM\t\tK\t\tS\t\tB\t\tP\t\tG\n";
-                }
-                std::cout << j << ":\t";
-                for(int i = 0; i < 8; i++) {
-                    std::cout <<  q_table[i][j] << "\t\t";
-                }
-                std::cout << std::endl;
-            }
-            while(true);
+            // for(int j = 0; j < 232; j++) {
+            //     if (j % 58 == 0 || j == 0) {
+            //         std::cout << "\nNext player\n";
+            //         std::cout << "\tNA\t\tH\t\tM\t\tK\t\tS\t\tB\t\tP\t\tG\n";
+            //     }
+            //     std::cout << j << ":\t";
+            //     for(int i = 0; i < 8; i++) {
+            //         printf("%.3f\t\t", q_table[i][j]);
+            //     }
+            //     std::cout << std::endl;
+            // }
+            // while(true);
         }
         first_turn = false;
     }
@@ -366,9 +371,9 @@ int simple_q_player::make_decision()
     std::vector<int> possible_actions = get_actions();
     int decision = select_action(q_table, states, possible_actions);
 
-    // std::cout << "Dice roll: " << dice_roll << std::endl;
+    // std::cout << "Dice roll: " << dice_roll << "\tDecision: " << decision+1 << std::endl;
     // for (int i = 0; i < 4; i++) {
-    //     std::cout << "Token " << i << ":\t" << possible_actions[i] << std::endl;
+    //     std::cout << "Token " << i+1 << ":\t" << possible_actions[i] << std::endl;
     // }
 
     if (this->training) {
