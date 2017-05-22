@@ -1,0 +1,1598 @@
+==22550== Memcheck, a memory error detector
+==22550== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==22550== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==22550== Command: ./ludo
+==22550== Parent PID: 2027
+==22550== 
+--22550-- 
+--22550-- Valgrind options:
+--22550--    -v
+--22550--    --tool=memcheck
+--22550--    --leak-check=full
+--22550--    --num-callers=40
+--22550--    --log-file=valgrind.log
+--22550-- Contents of /proc/version:
+--22550--   Linux version 4.8.0-46-generic (buildd@lcy01-15) (gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) ) #49~16.04.1-Ubuntu SMP Fri Mar 31 14:51:03 UTC 2017
+--22550-- 
+--22550-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--22550-- Page sizes: currently 4096, max supported 4096
+--22550-- Valgrind library directory: /usr/lib/valgrind
+--22550-- Reading syms from /home/ztaal/Desktop/ludo-gui/build/ludo
+--22550-- Reading syms from /lib/x86_64-linux-gnu/ld-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/ld-2.23.so ..
+--22550--   .. CRC mismatch (computed 10768843 wanted ef0d0121)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--22550--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--22550--   .. CRC mismatch (computed 5529a2c7 wanted 5bd23904)
+--22550--    object doesn't have a symbol table
+--22550--    object doesn't have a dynamic symbol table
+--22550-- Scheduler: using generic scheduler lock implementation.
+--22550-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==22550== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-22550-by-ztaal-on-???
+==22550== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-22550-by-ztaal-on-???
+==22550== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-22550-by-ztaal-on-???
+==22550== 
+==22550== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==22550== don't want to do, unless you know exactly what you're doing,
+==22550== or are doing some strange experiment):
+==22550==   /usr/lib/valgrind/../../bin/vgdb --pid=22550 ...command...
+==22550== 
+==22550== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==22550==   /path/to/gdb ./ludo
+==22550== and then give GDB the following command
+==22550==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=22550
+==22550== --pid is optional if only one valgrind process is running
+==22550== 
+--22550-- REDIR: 0x401cdc0 (ld-linux-x86-64.so.2:strlen) redirected to 0x3809e181 (???)
+--22550-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--22550--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--22550--   .. CRC mismatch (computed a30c8eaa wanted 7ae2fed4)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--22550--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--22550--   .. CRC mismatch (computed 402c2ab5 wanted 745f25ae)
+--22550--    object doesn't have a symbol table
+==22550== WARNING: new redirection conflicts with existing -- ignoring it
+--22550--     old: 0x0401cdc0 (strlen              ) R-> (0000.0) 0x3809e181 ???
+--22550--     new: 0x0401cdc0 (strlen              ) R-> (2007.0) 0x04c31020 strlen
+--22550-- REDIR: 0x401b710 (ld-linux-x86-64.so.2:index) redirected to 0x4c30bc0 (index)
+--22550-- REDIR: 0x401b930 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c320d0 (strcmp)
+--22550-- REDIR: 0x401db20 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c35270 (mempcpy)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21 ..
+--22550--   .. CRC mismatch (computed 834c912e wanted c67ab13d)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libgcc_s.so.1
+--22550--   Considering /lib/x86_64-linux-gnu/libgcc_s.so.1 ..
+--22550--   .. CRC mismatch (computed b9a68419 wanted 29d51b00)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libc-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/libc-2.23.so ..
+--22550--   .. CRC mismatch (computed f3344b67 wanted 8e4ae80b)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libpthread-2.23.so
+--22550--   Considering /usr/lib/debug/.build-id/84/538e3c6cfcd5d4e3c0d2b6c3373f802915a498.debug ..
+--22550--   .. build-id is valid
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libX11.so.6.3.0 ..
+--22550--   .. CRC mismatch (computed afbbdc31 wanted a2ee230b)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libm-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/libm-2.23.so ..
+--22550--   .. CRC mismatch (computed 3989a391 wanted dd37ef77)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libm-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libpng12.so.0.54.0
+--22550--   Considering /lib/x86_64-linux-gnu/libpng12.so.0.54.0 ..
+--22550--   .. CRC mismatch (computed c8414c97 wanted f8adabcb)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libz.so.1.2.8
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/nvidia-375/libGL.so.1.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libicui18n.so.55.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libicuuc.so.55.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libpcre16.so.3.13.2
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libpcre16.so.3.13.2 ..
+--22550--   .. CRC mismatch (computed 9ecde64e wanted f31ce157)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libdl-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/libdl-2.23.so ..
+--22550--   .. CRC mismatch (computed 4ba37d50 wanted e2315a8f)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libdl-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /lib/x86_64-linux-gnu/librt-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/librt-2.23.so ..
+--22550--   .. CRC mismatch (computed eff39c9f wanted eba137b1)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/librt-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libffi.so.6.0.4
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libpcre.so.3.13.2
+--22550--   Considering /lib/x86_64-linux-gnu/libpcre.so.3.13.2 ..
+--22550--   .. CRC mismatch (computed 276b70fd wanted 22183252)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb.so.1.1.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libfreetype.so.6.12.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgraphite2.so.3.0.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/nvidia-375/libGLX.so.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/nvidia-375/libGLdispatch.so.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libicudata.so.55.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXau.so.6.0.0 ..
+--22550--   .. CRC mismatch (computed 256f5df8 wanted 5d40ac88)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdmcp.so.6.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0 ..
+--22550--   .. CRC mismatch (computed b483887a wanted 38c83e44)
+--22550--    object doesn't have a symbol table
+--22550-- REDIR: 0x650be50 (libc.so.6:strcasecmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x65076d0 (libc.so.6:strcspn) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650e140 (libc.so.6:strncasecmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6509b40 (libc.so.6:strpbrk) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6509ed0 (libc.so.6:strspn) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650b59b (libc.so.6:memcpy@GLIBC_2.2.5) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6507f70 (libc.so.6:strncmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6505ed0 (libc.so.6:index) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650b600 (libc.so.6:memset) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650b000 (libc.so.6:bcmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6506120 (libc.so.6:strcmp) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6592620 (libc.so.6:__memcpy_chk) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6510840 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650aa80 (libc.so.6:strstr) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6509810 (libc.so.6:strncpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6507f30 (libc.so.6:strncat) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x65926b0 (libc.so.6:__memmove_chk) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x65075b0 (libc.so.6:strcpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6505cd0 (libc.so.6:strcat) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x6509850 (libc.so.6:rindex) redirected to 0x4c308a0 (rindex)
+--22550-- REDIR: 0x6507b70 (libc.so.6:strlen) redirected to 0x4c30f60 (strlen)
+--22550-- REDIR: 0x6501160 (libc.so.6:calloc) redirected to 0x4c2faa0 (calloc)
+--22550-- REDIR: 0x6500580 (libc.so.6:malloc) redirected to 0x4c2db20 (malloc)
+--22550-- REDIR: 0x6500b10 (libc.so.6:realloc) redirected to 0x4c2fce0 (realloc)
+--22550-- REDIR: 0x65108c0 (libc.so.6:__GI_memcpy) redirected to 0x4c32b00 (__GI_memcpy)
+--22550-- REDIR: 0x651b9c0 (libc.so.6:__strcmp_sse2_unaligned) redirected to 0x4c31f90 (strcmp)
+--22550-- REDIR: 0x65c9dc0 (libc.so.6:__memmove_avx_unaligned) redirected to 0x4c32230 (memcpy@GLIBC_2.2.5)
+--22550-- REDIR: 0x65eed80 (libc.so.6:__memset_avx2) redirected to 0x4c344c0 (memset)
+--22550-- REDIR: 0x65ca2b0 (libc.so.6:__memcpy_avx_unaligned) redirected to 0x4c324a0 (memcpy@@GLIBC_2.14)
+--22550-- REDIR: 0x6505f00 (libc.so.6:__GI_strchr) redirected to 0x4c30a00 (__GI_strchr)
+--22550-- REDIR: 0x6524c40 (libc.so.6:__strcat_sse2_unaligned) redirected to 0x4c30c00 (strcat)
+--22550-- REDIR: 0x6500940 (libc.so.6:free) redirected to 0x4c2ed80 (free)
+--22550-- REDIR: 0x5f72e60 (libstdc++.so.6:operator new(unsigned long)) redirected to 0x4c2e080 (operator new(unsigned long))
+--22550-- REDIR: 0x65ea840 (libc.so.6:__memcmp_sse4_1) redirected to 0x4c33cd0 (__memcmp_sse4_1)
+--22550-- REDIR: 0x650b040 (libc.so.6:__GI_memcmp) redirected to 0x4c33b90 (__GI_memcmp)
+--22550-- REDIR: 0x6506160 (libc.so.6:__GI_strcmp) redirected to 0x4c31fe0 (__GI_strcmp)
+--22550-- REDIR: 0x6507fc0 (libc.so.6:__GI_strncmp) redirected to 0x4c31710 (__GI_strncmp)
+--22550-- REDIR: 0x650acb0 (libc.so.6:memchr) redirected to 0x4c32170 (memchr)
+--22550-- REDIR: 0x6512bb0 (libc.so.6:strchrnul) redirected to 0x4c34da0 (strchrnul)
+--22550-- REDIR: 0x650b800 (libc.so.6:__GI_mempcpy) redirected to 0x4c34fa0 (__GI_mempcpy)
+--22550-- REDIR: 0x6522450 (libc.so.6:__strncpy_sse2_unaligned) redirected to 0x4c31570 (__strncpy_sse2_unaligned)
+--22550-- REDIR: 0x65ca2a0 (libc.so.6:__memcpy_chk_avx_unaligned) redirected to 0x4c35360 (__memcpy_chk)
+--22550-- REDIR: 0x5f70f10 (libstdc++.so.6:operator delete(void*)) redirected to 0x4c2f1e0 (operator delete(void*))
+--22550-- REDIR: 0x650b440 (libc.so.6:__GI_memmove) redirected to 0x4c347e0 (__GI_memmove)
+--22550-- REDIR: 0x5f72f10 (libstdc++.so.6:operator new[](unsigned long)) redirected to 0x4c2e7a0 (operator new[](unsigned long))
+--22550-- REDIR: 0x5f70f40 (libstdc++.so.6:operator delete[](void*)) redirected to 0x4c2f6e0 (operator delete[](void*))
+--22550-- REDIR: 0x65c1ea0 (libc.so.6:__strncmp_sse42) redirected to 0x4c317f0 (__strncmp_sse42)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/qt5/plugins/platforms/libqxcb.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libQt5XcbQpa.so.5.5.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1.0.0 ..
+--22550--   .. CRC mismatch (computed 41b84947 wanted ceb4ca65)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXi.so.6.1.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-render-util.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libSM.so.6.0.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libICE.so.6.3.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-render.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-image.so.0.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libxcb-image.so.0.0.0 ..
+--22550--   .. CRC mismatch (computed 5d343d58 wanted 546c97bc)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-icccm.so.4.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libxcb-icccm.so.4.0.0 ..
+--22550--   .. CRC mismatch (computed fa03b232 wanted 586b31d1)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-sync.so.1.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-xfixes.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-shm.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-randr.so.0.1.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-shape.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-keysyms.so.1.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libxcb-keysyms.so.1.0.0 ..
+--22550--   .. CRC mismatch (computed 5d6afac7 wanted 6185a057)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-xkb.so.1.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxkbcommon-x11.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libQt5DBus.so.5.5.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libuuid.so.1.3.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-util.so.1.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libxcb-util.so.1.0.0 ..
+--22550--   .. CRC mismatch (computed 34206838 wanted f9fe3e18)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libexpat.so.1.6.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libdbus-1.so.3.14.6
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libsystemd.so.0.14.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libselinux.so.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/liblzma.so.5.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libgcrypt.so.20.0.5
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libgpg-error.so.0.17.0
+--22550--    object doesn't have a symbol table
+--22550-- REDIR: 0x650bca0 (libc.so.6:stpcpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650b780 (libc.so.6:mempcpy) redirected to 0x4a286f0 (_vgnU_ifunc_wrapper)
+--22550-- REDIR: 0x650a4b0 (libc.so.6:__GI_strstr) redirected to 0x4c354d0 (__strstr_sse2)
+--22550-- REDIR: 0x65264c0 (libc.so.6:__strstr_sse2_unaligned) redirected to 0x4c35460 (strstr)
+--22550-- REDIR: 0x6592890 (libc.so.6:__strcpy_chk) redirected to 0x4c34e10 (__strcpy_chk)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXcursor.so.1.0.2 ..
+--22550--   .. CRC mismatch (computed 63e27661 wanted 89d60ca9)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXrender.so.1.3.0 ..
+--22550--   .. CRC mismatch (computed 19f12a45 wanted d5c3c1e7)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXfixes.so.3.1.0
+--22550--    object doesn't have a symbol table
+--22550-- REDIR: 0x6507d10 (libc.so.6:strnlen) redirected to 0x4c30ee0 (strnlen)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxcb-glx.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libdbusmenu-qt5.so.2.6.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30 ..
+--22550--   .. CRC mismatch (computed 2d78e4e5 wanted c5b0258c)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30 ..
+--22550--   .. CRC mismatch (computed ed735054 wanted ce943165)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.4800.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1 ..
+--22550--   .. CRC mismatch (computed 0bc691c3 wanted 81152a36)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21809.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libcairo.so.2.11400.6
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0.3200.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1 ..
+--22550--   .. CRC mismatch (computed 5cbf3a77 wanted 8423ec12)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1 ..
+--22550--   .. CRC mismatch (computed ccd1b775 wanted 01083394)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXinerama.so.1.0.0 ..
+--22550--   .. CRC mismatch (computed 7bb99cdf wanted 61ad4d32)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXrandr.so.2.2.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXcomposite.so.1.0.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXcomposite.so.1.0.0 ..
+--22550--   .. CRC mismatch (computed 95e939a0 wanted a74069c4)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libXdamage.so.1.1.0
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libXdamage.so.1.1.0 ..
+--22550--   .. CRC mismatch (computed e9b9988d wanted 2077fd66)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libpixman-1.so.0.33.6
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libresolv-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/libresolv-2.23.so ..
+--22550--   .. CRC mismatch (computed c17e9092 wanted 4d18909c)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libresolv-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libthai.so.0.2.4
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libdatrie.so.1.3.3
+--22550--    object doesn't have a symbol table
+--22550-- REDIR: 0x6523430 (libc.so.6:__stpcpy_sse2_unaligned) redirected to 0x4c34120 (__stpcpy_sse2_unaligned)
+--22550-- REDIR: 0x6521e20 (libc.so.6:__strcpy_sse2_unaligned) redirected to 0x4c31040 (strcpy)
+--22550-- REDIR: 0x650bce0 (libc.so.6:__GI_stpcpy) redirected to 0x4c33f80 (__GI_stpcpy)
+--22550-- REDIR: 0x650bec0 (libc.so.6:__GI___strcasecmp_l) redirected to 0x4c31c00 (__GI___strcasecmp_l)
+--22550-- REDIR: 0x65129a0 (libc.so.6:rawmemchr) redirected to 0x4c34dd0 (rawmemchr)
+--22550-- REDIR: 0x401dc70 (ld-linux-x86-64.so.2:stpcpy) redirected to 0x4c342c0 (stpcpy)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libgail.so
+--22550--   Considering /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libgail.so ..
+--22550--   .. CRC mismatch (computed bf44ab81 wanted 871b9ad0)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgailutil.so.18.0.1
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libgailutil.so.18.0.1 ..
+--22550--   .. CRC mismatch (computed 9c5575a0 wanted 07ac920b)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libatk-bridge.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libatk-bridge-2.0.so.0.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libatspi.so.0.0.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/engines/libpixmap.so
+--22550--   Considering /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/engines/libpixmap.so ..
+--22550--   .. CRC mismatch (computed 6fe24d9f wanted 0d7d7ff9)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/engines/libadwaita.so
+--22550--   Considering /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/engines/libadwaita.so ..
+--22550--   .. CRC mismatch (computed 114ed369 wanted a41d0e70)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so
+--22550--   Considering /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so ..
+--22550--   .. CRC mismatch (computed 52137fdc wanted ceaccc85)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libcanberra-gtk.so.0.1.9
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libcanberra-gtk.so.0.1.9 ..
+--22550--   .. CRC mismatch (computed 3ea3707c wanted 3fa02165)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libcanberra.so.0.2.5
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libcanberra.so.0.2.5 ..
+--22550--   .. CRC mismatch (computed 56f35b66 wanted 42445ea3)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libvorbisfile.so.3.3.7
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libtdb.so.1.3.8
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.1
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.1 ..
+--22550--   .. CRC mismatch (computed 8f61a187 wanted cdc1b5b4)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libvorbis.so.0.4.8
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libogg.so.0.8.2
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libogg.so.0.8.2 ..
+--22550--   .. CRC mismatch (computed 79e45162 wanted f32912dd)
+--22550--    object doesn't have a symbol table
+--22550-- memcheck GC: 1000 nodes, 215 survivors (21.5%)
+--22550-- memcheck GC: 1014 new table size (driftup)
+--22550-- REDIR: 0x651b970 (libc.so.6:__GI_strncpy) redirected to 0x4c31310 (__GI_strncpy)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libibusplatforminputcontextplugin.so
+--22550--    object doesn't have a symbol table
+--22550-- memcheck GC: 1014 nodes, 495 survivors (48.8%)
+--22550-- memcheck GC: 1029 new table size (driftup)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgnomevfs-2.so.0.2400.4
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libgnomevfs-2.so.0.2400.4 ..
+--22550--   .. CRC mismatch (computed 9b79322e wanted 219252ac)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgconf-2.so.4.1.5
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libgconf-2.so.4.1.5 ..
+--22550--   .. CRC mismatch (computed f2e50b21 wanted 3572a88e)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libxml2.so.2.9.3
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libdbus-glib-1.so.2.3.3
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgnutls.so.30.6.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libavahi-glib.so.1.0.2
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libavahi-common.so.3.5.3
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libavahi-client.so.3.2.9
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /lib/x86_64-linux-gnu/libutil-2.23.so
+--22550--   Considering /lib/x86_64-linux-gnu/libutil-2.23.so ..
+--22550--   .. CRC mismatch (computed 53bedfa9 wanted 7d998962)
+--22550--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libutil-2.23.so ..
+--22550--   .. CRC is valid
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libp11-kit.so.0.1.0
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libidn.so.11.6.15
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libtasn1.so.6.5.1
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libnettle.so.6.2
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libnettle.so.6.2 ..
+--22550--   .. CRC mismatch (computed 3240267d wanted d7683e48)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libhogweed.so.4.2
+--22550--   Considering /usr/lib/x86_64-linux-gnu/libhogweed.so.4.2 ..
+--22550--   .. CRC mismatch (computed 22df53ec wanted 0378f506)
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libgmp.so.10.3.0
+--22550--    object doesn't have a symbol table
+--22550-- memcheck GC: 1029 nodes, 536 survivors (52.1%)
+--22550-- memcheck GC: 1455 new table size (stepup)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gio/modules/libgvfsdbus.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gvfs/libgvfscommon.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gio/modules/libdconfsettings.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gio/modules/libgioremote-volume-monitor.so
+--22550--    object doesn't have a symbol table
+--22550-- REDIR: 0x65c6c70 (libc.so.6:__strspn_sse42) redirected to 0x4c35670 (strspn)
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gio/modules/libgiognomeproxy.so
+--22550--    object doesn't have a symbol table
+--22550-- Discarding syms at 0x1a793970-0x1a794a0a in /usr/lib/x86_64-linux-gnu/gio/modules/libgiognomeproxy.so due to munmap()
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gio/modules/libgiognutls.so
+--22550--    object doesn't have a symbol table
+--22550-- Discarding syms at 0x1a7992b0-0x1a7a6433 in /usr/lib/x86_64-linux-gnu/gio/modules/libgiognutls.so due to munmap()
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gio/modules/libgiolibproxy.so
+--22550--    object doesn't have a symbol table
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0
+--22550--    object doesn't have a symbol table
+--22550-- Discarding syms at 0x1a793270-0x1a793a6a in /usr/lib/x86_64-linux-gnu/gio/modules/libgiolibproxy.so due to munmap()
+--22550-- Discarding syms at 0x1a99c8c0-0x1a9affed in /usr/lib/x86_64-linux-gnu/libproxy.so.1.0.0 due to munmap()
+--22550-- REDIR: 0x65c6b40 (libc.so.6:__strpbrk_sse42) redirected to 0x4c355b0 (strpbrk)
+==22550== Conditional jump or move depends on uninitialised value(s)
+==22550==    at 0x1131C13D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E554: g_signal_emit_by_name (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A8F7: g_object_set_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7AFCB: g_object_set (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A935: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== Conditional jump or move depends on uninitialised value(s)
+==22550==    at 0x6D2F3A8: g_utf8_offset_to_pointer (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1131F734: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131FD38: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1132006E: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114AFE67: gtk_widget_set_parent (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1134EA32: gtk_fixed_put (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A760A6: g_cclosure_marshal_VOID__OBJECTv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x5079FB4: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A3AD: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A93D: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== Conditional jump or move depends on uninitialised value(s)
+==22550==    at 0x6D2F3D5: g_utf8_offset_to_pointer (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1131F734: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131FD38: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1132006E: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114AFE67: gtk_widget_set_parent (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1134EA32: gtk_fixed_put (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A760A6: g_cclosure_marshal_VOID__OBJECTv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x5079FB4: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A3AD: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A93D: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+--22550-- Reading syms from /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders/libpixbufloader-png.so
+--22550--    object doesn't have a symbol table
+--22550-- memcheck GC: 1455 nodes, 1149 survivors (79.0%)
+--22550-- memcheck GC: 2057 new table size (stepup)
+vex amd64->IR: unhandled instruction bytes: 0xF 0xC7 0xF0 0x89 0x6 0xF 0x42 0xC1
+vex amd64->IR:   REX=0 REX.W=0 REX.R=0 REX.X=0 REX.B=0
+vex amd64->IR:   VEX=0 VEX.L=0 VEX.nVVVV=0x0 ESC=0F
+vex amd64->IR:   PFX.66=0 PFX.F2=0 PFX.F3=0
+==22550== valgrind: Unrecognised instruction at address 0x5f9cb15.
+==22550==    at 0x5F9CB15: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==22550==    by 0x5F9CCB1: std::random_device::_M_getval() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==22550==    by 0x409739: ludo_player_random::ludo_player_random() (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550==    by 0x404637: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== Your program just tried to execute an instruction that Valgrind
+==22550== did not recognise.  There are two possible reasons for this.
+==22550== 1. Your program has a bug and erroneously jumped to a non-code
+==22550==    location.  If you are running Memcheck and you just saw a
+==22550==    warning about a bad jump, it's probably your program's fault.
+==22550== 2. The instruction is legitimate but Valgrind doesn't handle it,
+==22550==    i.e. it's Valgrind's fault.  If you think this is the case or
+==22550==    you are not sure, please let us know and we'll try to fix it.
+==22550== Either way, Valgrind will now raise a SIGILL signal which will
+==22550== probably kill your program.
+==22550== 
+==22550== Process terminating with default action of signal 4 (SIGILL)
+==22550==  Illegal opcode at address 0x5F9CB15
+==22550==    at 0x5F9CB15: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==22550==    by 0x5F9CCB1: std::random_device::_M_getval() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21)
+==22550==    by 0x409739: ludo_player_random::ludo_player_random() (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550==    by 0x404637: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== HEAP SUMMARY:
+==22550==     in use at exit: 2,302,614 bytes in 26,380 blocks
+==22550==   total heap usage: 72,194 allocs, 45,814 frees, 9,743,541 bytes allocated
+==22550== 
+==22550== Searching for pointers to 24,986 not-freed blocks
+==22550== Checked 45,065,744 bytes
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,179 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90522: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7430B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,180 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x4C2FDEF: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90406: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7430B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,181 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90522: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A74371: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,182 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x4C2FDEF: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90406: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A74371: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,183 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90522: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7DB04: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E181: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,184 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x4C2FDEF: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90406: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7DB04: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E181: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,185 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90522: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A78C1B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E186: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,186 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x4C2FDEF: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90406: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F90: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A78C1B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E186: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 16 bytes in 1 blocks are possibly lost in loss record 2,187 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05718: g_malloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D1C922: g_slice_alloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A6E309: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E37E: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8F42D: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8F803: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A9259A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A9681F: g_type_add_interface_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x112D24D5: gtk_action_get_type (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x112D609B: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A8FCA0: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A91859: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A931BE: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x156B0B47: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so)
+==22550==    by 0x156B0EBF: gtk_module_init (in /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libcanberra-gtk-module.so)
+==22550==    by 0x113A6C90: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84FC0: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A774D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79960: g_object_notify (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x118C6FE6: gdk_display_open_default_libgtk_only (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1138E574: gtk_init (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x10DE6DD6: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x10DE7C83: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x55A964A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B30D7: QGuiApplicationPrivate::createPlatformIntegration() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B3ECC: QGuiApplicationPrivate::createEventDispatcher() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x5C997E5: QCoreApplication::init() (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x5C99855: QCoreApplication::QCoreApplication(QCoreApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x55B5CC8: QGuiApplication::QGuiApplication(QGuiApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x4F97BCC: QApplication::QApplication(int&, char**, int) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 24 bytes in 1 blocks are possibly lost in loss record 3,029 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A933B5: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A92E2C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A82147: g_param_spec_flags (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114B1270: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x143AE029: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libgail.so)
+==22550==    by 0x11F84A1D: atk_add_focus_tracker (in /usr/lib/x86_64-linux-gnu/libatk-1.0.so.0.21809.1)
+==22550==    by 0x143B0235: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libgail.so)
+==22550==    by 0x143B034E: gtk_module_init (in /usr/lib/x86_64-linux-gnu/gtk-2.0/modules/libgail.so)
+==22550==    by 0x113A6C90: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84FC0: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A774D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79960: g_object_notify (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x118C6FE6: gdk_display_open_default_libgtk_only (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1138E574: gtk_init (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x10DE6DD6: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x10DE7C83: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x55A964A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B30D7: QGuiApplicationPrivate::createPlatformIntegration() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B3ECC: QGuiApplicationPrivate::createEventDispatcher() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x5C997E5: QCoreApplication::init() (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x5C99855: QCoreApplication::QCoreApplication(QCoreApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x55B5CC8: QGuiApplication::QGuiApplication(QGuiApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x4F97BCC: QApplication::QApplication(int&, char**, int) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 27 bytes in 1 blocks are possibly lost in loss record 3,056 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x12C838AD: pango_language_from_string (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8400E: pango_script_get_sample_language (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x11D678B6: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x11D686B7: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x12A5E173: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x785D246: ??? (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x7840589: hb_shape_plan_execute (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x783FAB0: hb_shape_full (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x12A5E68D: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12C92917: pango_shape_full (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C846D0: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C85F2B: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C884A3: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8A1B7: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8A6B5: pango_layout_get_pixel_extents (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x113EB320: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113EB4E0: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CCAFC: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CEEB1: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CF5F1: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113D117E: gtk_range_set_adjustment (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A786A2: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A99E: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 32 bytes in 1 blocks are possibly lost in loss record 4,915 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A933B5: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A92E2C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A82057: g_param_spec_enum (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x113FA519: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x113F7EB8: gtk_settings_get_for_screen (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113A7570: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A760A6: g_cclosure_marshal_VOID__OBJECTv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E554: g_signal_emit_by_name (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x118F7716: gdk_display_open (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x118C6FCE: gdk_display_open_default_libgtk_only (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1138E574: gtk_init (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x10DE6DD6: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x10DE7C83: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x55A964A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B30D7: QGuiApplicationPrivate::createPlatformIntegration() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B3ECC: QGuiApplicationPrivate::createEventDispatcher() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x5C997E5: QCoreApplication::init() (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x5C99855: QCoreApplication::QCoreApplication(QCoreApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x55B5CC8: QGuiApplication::QGuiApplication(QGuiApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x4F97BCC: QApplication::QApplication(int&, char**, int) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 36 bytes in 1 blocks are possibly lost in loss record 5,026 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x12C838AD: pango_language_from_string (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8399E: pango_language_get_default (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C7E073: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7831A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x12C813F2: pango_font_map_create_context (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x118D5874: gdk_pango_context_get_for_screen (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114ABAAC: gtk_widget_create_pango_context (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114ABB5F: gtk_widget_get_pango_context (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114ABBDF: gtk_widget_create_pango_layout (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113191AA: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131C3E4: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7831A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1130FEFB: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1130D8FD: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A90A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 40 bytes in 1 blocks are possibly lost in loss record 5,663 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8F9D8: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A952CC: g_type_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7453D: g_flags_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x12762486: g_tls_certificate_flags_get_type (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12747F61: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x127920F7: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127926A7: g_dbus_address_get_stream_sync (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A3126: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A3992: g_bus_get_sync (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127AC474: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12728A1E: g_initable_new_valist (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12728AD5: g_initable_new (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x191453AD: gvfs_dbus_daemon_proxy_new_for_bus_sync (in /usr/lib/x86_64-linux-gnu/gvfs/libgvfscommon.so)
+==22550==    by 0x19581E68: ??? (in /usr/lib/x86_64-linux-gnu/gio/modules/libgioremote-volume-monitor.so)
+==22550==    by 0x1272AF35: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x6A996A0: g_type_module_use (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1272B707: g_io_modules_scan_all_in_directory_with_scope (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272BA57: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272C0E1: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1271888D: g_file_new_for_path (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x18CB11CF: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB3885: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB1875: ibus_bus_new_async (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x18A8B2F3: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18A8BE01: ibus_im_context_new (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x11378E7D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113797D8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550== 
+==22550== 80 bytes in 1 blocks are possibly lost in loss record 8,289 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x9B64DC8: __glDispatchInit (in /usr/lib/nvidia-375/libGLdispatch.so.0)
+==22550==    by 0x990B714: ??? (in /usr/lib/nvidia-375/libGLX.so.0)
+==22550==    by 0x40104A9: call_init.part.0 (dl-init.c:58)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 80 bytes in 1 blocks are possibly lost in loss record 8,290 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x9B6589A: __glDispatchRegisterStubCallbacks (in /usr/lib/nvidia-375/libGLdispatch.so.0)
+==22550==    by 0x7CD3A9A: _init (in /usr/lib/nvidia-375/libGL.so.1.0.0)
+==22550==    by 0x40104A9: call_init.part.0 (dl-init.c:58)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 80 bytes in 1 blocks are possibly lost in loss record 8,291 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A933B5: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A92E2C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A96247: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7E0D2: g_param_spec_internal (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A82661: g_param_spec_object (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x118C9E7B: ??? (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x118CA064: gdk_display_manager_get (in /usr/lib/x86_64-linux-gnu/libgdk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113A73CA: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1138DEA7: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6D0AF66: g_option_context_parse (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1138E4B7: gtk_parse_args (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1138E538: gtk_init (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x10DE6DD6: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x10DE7C83: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x55A964A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B30D7: QGuiApplicationPrivate::createPlatformIntegration() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B3ECC: QGuiApplicationPrivate::createEventDispatcher() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x5C997E5: QCoreApplication::init() (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x5C99855: QCoreApplication::QCoreApplication(QCoreApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x55B5CC8: QGuiApplication::QGuiApplication(QGuiApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x4F97BCC: QApplication::QApplication(int&, char**, int) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 96 bytes in 1 blocks are possibly lost in loss record 9,716 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8FA59: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8FB43: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E0AA: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 96 bytes in 1 blocks are possibly lost in loss record 9,717 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8FA59: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8FB43: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F82: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7430B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 96 bytes in 1 blocks are possibly lost in loss record 9,718 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8FA59: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8FB43: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F82: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A74371: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 96 bytes in 1 blocks are possibly lost in loss record 9,719 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8FA59: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8FB43: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F82: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7DB04: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E181: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 96 bytes in 1 blocks are possibly lost in loss record 9,720 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8FA59: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8FB43: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94F82: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A78C1B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E186: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 132 bytes in 1 blocks are possibly lost in loss record 10,337 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90DFF: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94FE0: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7430B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 132 bytes in 1 blocks are possibly lost in loss record 10,338 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90DFF: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94FE0: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A74371: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E177: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 148 bytes in 1 blocks are possibly lost in loss record 10,456 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90BD6: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94FE0: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7DB04: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E181: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 148 bytes in 1 blocks are possibly lost in loss record 10,457 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05770: g_malloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A90BD6: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A94FE0: g_type_register_fundamental (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A78C1B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E186: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 154 (96 direct, 58 indirect) bytes in 1 blocks are definitely lost in loss record 10,482 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D05718: g_malloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D1C922: g_slice_alloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D1CFBD: g_slice_alloc0 (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A962D1: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7831A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1272B21E: g_io_module_new (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272B686: g_io_modules_scan_all_in_directory_with_scope (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272BA57: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272C0E1: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1271888D: g_file_new_for_path (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x18CB11CF: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB3885: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB1875: ibus_bus_new_async (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x18A8B2F3: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18A8BE01: ibus_im_context_new (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x11378E7D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113797D8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11379A14: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11320066: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x507A0CB: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A288: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A912: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550== 
+==22550== 184 bytes in 1 blocks are possibly lost in loss record 10,648 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8F9D8: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A952CC: g_type_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7F799: g_param_type_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A81AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A6E18B: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x40104E9: call_init.part.0 (dl-init.c:72)
+==22550==    by 0x40105FA: call_init (dl-init.c:30)
+==22550==    by 0x40105FA: _dl_init (dl-init.c:120)
+==22550==    by 0x4000CF9: ??? (in /lib/x86_64-linux-gnu/ld-2.23.so)
+==22550== 
+==22550== 288 (256 direct, 32 indirect) bytes in 1 blocks are definitely lost in loss record 10,956 of 11,602
+==22550==    at 0x4C2DB8F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0xE6800B9: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE680829: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE681D4A: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE68719B: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xEF76A7B: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF7738B: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF78CAD: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF79404: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF7B70A: XML_ParseBuffer (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xE68652A: FcConfigParseAndLoad (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE686836: FcConfigParseAndLoad (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE6877A0: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xEF76A7B: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF7738B: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF78CAD: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF79404: ??? (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xEF7B70A: XML_ParseBuffer (in /lib/x86_64-linux-gnu/libexpat.so.1.6.0)
+==22550==    by 0xE68652A: FcConfigParseAndLoad (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE6796C7: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE679915: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE66D8DC: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE66F12E: FcConfigSubstituteWithPat (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0x41373ED: ??? (in /usr/lib/x86_64-linux-gnu/libQt5XcbQpa.so.5.5.1)
+==22550==    by 0x55B1260: QGuiApplication::font() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x56582A0: QFont::QFont() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x10DF8720: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x10DE6D77: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x10DE7C83: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platformthemes/libappmenu-qt5.so)
+==22550==    by 0x55A964A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B30D7: QGuiApplicationPrivate::createPlatformIntegration() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B3ECC: QGuiApplicationPrivate::createEventDispatcher() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x5C997E5: QCoreApplication::init() (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x5C99855: QCoreApplication::QCoreApplication(QCoreApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x55B5CC8: QGuiApplication::QGuiApplication(QGuiApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x4F97BCC: QApplication::QApplication(int&, char**, int) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 352 bytes in 1 blocks are possibly lost in loss record 11,022 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x40136D4: allocate_dtv (dl-tls.c:322)
+==22550==    by 0x40136D4: _dl_allocate_tls (dl-tls.c:539)
+==22550==    by 0x684E26E: allocate_stack (allocatestack.c:588)
+==22550==    by 0x684E26E: pthread_create@@GLIBC_2.2.5 (pthread_create.c:539)
+==22550==    by 0x5AB3D27: QThread::start(QThread::Priority) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x4103778: ??? (in /usr/lib/x86_64-linux-gnu/libQt5XcbQpa.so.5.5.1)
+==22550==    by 0x41095E3: QXcbConnection::QXcbConnection(QXcbNativeInterface*, bool, unsigned int, char const*) (in /usr/lib/x86_64-linux-gnu/libQt5XcbQpa.so.5.5.1)
+==22550==    by 0x410C9EC: QXcbIntegration::QXcbIntegration(QStringList const&, int&, char**) (in /usr/lib/x86_64-linux-gnu/libQt5XcbQpa.so.5.5.1)
+==22550==    by 0x40293AC: ??? (in /usr/lib/x86_64-linux-gnu/qt5/plugins/platforms/libqxcb.so)
+==22550==    by 0x55A6D91: QPlatformIntegrationFactory::create(QString const&, QStringList const&, int&, char**, QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B2FC3: QGuiApplicationPrivate::createPlatformIntegration() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x55B3ECC: QGuiApplicationPrivate::createEventDispatcher() (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x5C997E5: QCoreApplication::init() (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x5C99855: QCoreApplication::QCoreApplication(QCoreApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.5.1)
+==22550==    by 0x55B5CC8: QGuiApplication::QGuiApplication(QGuiApplicationPrivate&) (in /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.5.1)
+==22550==    by 0x4F97BCC: QApplication::QApplication(int&, char**, int) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 368 bytes in 1 blocks are possibly lost in loss record 11,032 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x40136D4: allocate_dtv (dl-tls.c:322)
+==22550==    by 0x40136D4: _dl_allocate_tls (dl-tls.c:539)
+==22550==    by 0x684E26E: allocate_stack (allocatestack.c:588)
+==22550==    by 0x684E26E: pthread_create@@GLIBC_2.2.5 (pthread_create.c:539)
+==22550==    by 0x6D4485F: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D26E8E: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D26F47: g_thread_new (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D01270: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x12751E16: g_task_get_type (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127AF6D0: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A32D6: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A3992: g_bus_get_sync (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127AC474: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12728A1E: g_initable_new_valist (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12728AD5: g_initable_new (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x191453AD: gvfs_dbus_daemon_proxy_new_for_bus_sync (in /usr/lib/x86_64-linux-gnu/gvfs/libgvfscommon.so)
+==22550==    by 0x19581E68: ??? (in /usr/lib/x86_64-linux-gnu/gio/modules/libgioremote-volume-monitor.so)
+==22550==    by 0x1272AF35: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x6A996A0: g_type_module_use (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1272B707: g_io_modules_scan_all_in_directory_with_scope (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272BA57: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272C0E1: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1271888D: g_file_new_for_path (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x18CB11CF: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB3885: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB1875: ibus_bus_new_async (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x18A8B2F3: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18A8BE01: ibus_im_context_new (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x11378E7D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113797D8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11379A14: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11320066: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550== 
+==22550== 368 bytes in 1 blocks are possibly lost in loss record 11,033 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x40136D4: allocate_dtv (dl-tls.c:322)
+==22550==    by 0x40136D4: _dl_allocate_tls (dl-tls.c:539)
+==22550==    by 0x684E26E: allocate_stack (allocatestack.c:588)
+==22550==    by 0x684E26E: pthread_create@@GLIBC_2.2.5 (pthread_create.c:539)
+==22550==    by 0x6D4485F: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D26E8E: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D26F47: g_thread_new (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x127AF743: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A32D6: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A3992: g_bus_get_sync (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127AC474: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12728A1E: g_initable_new_valist (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12728AD5: g_initable_new (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x191453AD: gvfs_dbus_daemon_proxy_new_for_bus_sync (in /usr/lib/x86_64-linux-gnu/gvfs/libgvfscommon.so)
+==22550==    by 0x19581E68: ??? (in /usr/lib/x86_64-linux-gnu/gio/modules/libgioremote-volume-monitor.so)
+==22550==    by 0x1272AF35: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x6A996A0: g_type_module_use (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1272B707: g_io_modules_scan_all_in_directory_with_scope (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272BA57: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1272C0E1: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1271888D: g_file_new_for_path (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x18CB11CF: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB3885: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB1875: ibus_bus_new_async (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x18A8B2F3: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18A8BE01: ibus_im_context_new (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x11378E7D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113797D8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11379A14: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11320066: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550== 
+==22550== 368 bytes in 1 blocks are possibly lost in loss record 11,034 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x40136D4: allocate_dtv (dl-tls.c:322)
+==22550==    by 0x40136D4: _dl_allocate_tls (dl-tls.c:539)
+==22550==    by 0x684E26E: allocate_stack (allocatestack.c:588)
+==22550==    by 0x684E26E: pthread_create@@GLIBC_2.2.5 (pthread_create.c:539)
+==22550==    by 0x6D4485F: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D26E8E: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D271FC: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D277FA: g_thread_pool_push (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1275261A: g_task_run_in_thread (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1270111C: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127014A0: g_async_initable_new_valist_async (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x12701557: g_async_initable_new_async (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A15DC: g_dbus_connection_new_for_address (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x18CB38BD: ??? (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18CB1875: ibus_bus_new_async (in /usr/lib/x86_64-linux-gnu/libibus-1.0.so.5.0.511)
+==22550==    by 0x18A8B2F3: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18A8BE01: ibus_im_context_new (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x11378E7D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113797D8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11379A14: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11320066: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x507A0CB: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A288: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A912: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 368 bytes in 1 blocks are possibly lost in loss record 11,035 of 11,602
+==22550==    at 0x4C2FB55: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x40136D4: allocate_dtv (dl-tls.c:322)
+==22550==    by 0x40136D4: _dl_allocate_tls (dl-tls.c:539)
+==22550==    by 0x684E26E: allocate_stack (allocatestack.c:588)
+==22550==    by 0x684E26E: pthread_create@@GLIBC_2.2.5 (pthread_create.c:539)
+==22550==    by 0x6D4485F: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D26E8E: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D271FC: ??? (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6D277FA: g_thread_pool_push (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1275261A: g_task_run_in_thread (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x1270111C: ??? (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127A3A09: g_bus_get (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x127AA6DF: g_bus_watch_name (in /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.4800.2)
+==22550==    by 0x18A8B115: ??? (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x18A8BE01: ibus_im_context_new (in /usr/lib/x86_64-linux-gnu/gtk-2.0/2.10.0/immodules/im-ibus.so)
+==22550==    by 0x11378E7D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113797D8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11379A14: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11320066: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x507A0CB: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A288: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A912: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 496 bytes in 1 blocks are possibly lost in loss record 11,123 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8F9D8: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A952CC: g_type_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7443D: g_enum_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1149DB6A: gtk_toolbar_space_style_get_type (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114558D4: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A9322C: g_type_class_ref (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79DAC: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507AA37: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 648 bytes in 1 blocks are possibly lost in loss record 11,197 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0x6D057D7: g_realloc (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x6A8F9D8: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A952CC: g_type_register_static (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A95694: g_type_register_static_simple (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x11475A93: gtk_tree_selection_get_type (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11475AC8: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x11475BDC: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1148BEC2: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7831A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A3DB: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507AA85: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 2,154 (768 direct, 1,386 indirect) bytes in 1 blocks are definitely lost in loss record 11,492 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0xE68000A: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE68069D: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE67D765: FcFontRenderPrepare (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE67DA4F: FcFontMatch (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0x12A5CF1D: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12A5D06C: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12A5B298: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12C7E5F2: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C7E8E3: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C7FCFF: pango_itemize_with_base_dir (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8815C: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8965F: pango_layout_get_unknown_glyphs_count (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x1131922F: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131C3E4: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7831A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1130FEFB: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1130D8FD: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A90A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 2,285 (768 direct, 1,517 indirect) bytes in 1 blocks are definitely lost in loss record 11,500 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0xE68000A: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE68069D: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE67D765: FcFontRenderPrepare (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE67DA4F: FcFontMatch (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0x12A5CF1D: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12A5D06C: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12A5B298: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x11D678DA: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x11D686B7: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x12A5E173: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x785D246: ??? (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x7840589: hb_shape_plan_execute (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x783FAB0: hb_shape_full (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x12A5E68D: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12C92917: pango_shape_full (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C846D0: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C85F2B: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C884A3: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8A1B7: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8A6B5: pango_layout_get_pixel_extents (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x113EB320: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113EB4E0: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CCAFC: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CEEB1: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CF5F1: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113D117E: gtk_range_set_adjustment (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A786A2: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A99E: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 5,015 (512 direct, 4,503 indirect) bytes in 1 blocks are definitely lost in loss record 11,546 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0xE68000A: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE680829: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE680B6F: FcPatternAddInteger (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0x1224B931: ??? (in /usr/lib/x86_64-linux-gnu/libcairo.so.2.11400.6)
+==22550==    by 0x11D6B54F: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x12A5C6F1: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12A5B27C: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x11D678DA: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x11D686B7: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x12A5E173: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x785D246: ??? (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x7840589: hb_shape_plan_execute (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x783FAB0: hb_shape_full (in /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0.10000.1)
+==22550==    by 0x12A5E68D: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12C92917: pango_shape_full (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C846D0: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C85F2B: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C884A3: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8A1B7: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8A6B5: pango_layout_get_pixel_extents (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x113EB320: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113EB4E0: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CCAFC: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CEEB1: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113CF5F1: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x113D117E: gtk_range_set_adjustment (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A786A2: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A1B4: g_object_new_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A520: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A99E: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 6,196 (512 direct, 5,684 indirect) bytes in 1 blocks are definitely lost in loss record 11,558 of 11,602
+==22550==    at 0x4C2FD5F: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22550==    by 0xE68000A: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE680829: ??? (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0xE680B6F: FcPatternAddInteger (in /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.9.0)
+==22550==    by 0x1224B931: ??? (in /usr/lib/x86_64-linux-gnu/libcairo.so.2.11400.6)
+==22550==    by 0x11D6B54F: ??? (in /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0.3800.1)
+==22550==    by 0x12A5C6F1: ??? (in /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0.3800.1)
+==22550==    by 0x12C7E829: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C7FCFF: pango_itemize_with_base_dir (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8815C: ??? (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x12C8965F: pango_layout_get_unknown_glyphs_count (in /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0.3800.1)
+==22550==    by 0x1131922F: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131C3E4: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7831A: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1130FEFB: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A96358: g_type_create_instance (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A77DF7: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x1130D8FD: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A78148: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A79C00: g_object_newv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A533: g_object_new (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A90A: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== LEAK SUMMARY:
+==22550==    definitely lost: 2,912 bytes in 6 blocks
+==22550==    indirectly lost: 13,180 bytes in 552 blocks
+==22550==      possibly lost: 4,735 bytes in 34 blocks
+==22550==    still reachable: 2,050,227 bytes in 24,394 blocks
+==22550==                       of which reachable via heuristic:
+==22550==                         length64           : 8,144 bytes in 122 blocks
+==22550==                         newarray           : 2,128 bytes in 53 blocks
+==22550==         suppressed: 0 bytes in 0 blocks
+==22550== Reachable blocks (those to which a pointer was found) are not shown.
+==22550== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==22550== 
+==22550== Use --track-origins=yes to see where uninitialised values come from
+==22550== ERROR SUMMARY: 43 errors from 43 contexts (suppressed: 0 from 0)
+==22550== 
+==22550== 1 errors in context 1 of 43:
+==22550== Conditional jump or move depends on uninitialised value(s)
+==22550==    at 0x6D2F3D5: g_utf8_offset_to_pointer (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1131F734: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131FD38: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1132006E: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114AFE67: gtk_widget_set_parent (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1134EA32: gtk_fixed_put (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A760A6: g_cclosure_marshal_VOID__OBJECTv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x5079FB4: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A3AD: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A93D: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 
+==22550== 1 errors in context 2 of 43:
+==22550== Conditional jump or move depends on uninitialised value(s)
+==22550==    at 0x6D2F3A8: g_utf8_offset_to_pointer (in /lib/x86_64-linux-gnu/libglib-2.0.so.0.4800.2)
+==22550==    by 0x1131F734: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1131FD38: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1132006E: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A72FA4: g_closure_invoke (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A84AFB: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8DD5B: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x114AEB53: gtk_widget_realize (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x114AFE67: gtk_widget_set_parent (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x1134EA32: gtk_fixed_put (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A760A6: g_cclosure_marshal_VOID__OBJECTv (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E08E: g_signal_emit (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x5079FB4: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A3AD: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x507A93D: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== 
+==22550== 1 errors in context 3 of 43:
+==22550== Conditional jump or move depends on uninitialised value(s)
+==22550==    at 0x1131C13D: ??? (in /usr/lib/x86_64-linux-gnu/libgtk-x11-2.0.so.0.2400.30)
+==22550==    by 0x6A731D3: ??? (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8D9A5: g_signal_emit_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A8E554: g_signal_emit_by_name (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7A8F7: g_object_set_valist (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x6A7AFCB: g_object_set (in /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.4800.2)
+==22550==    by 0x507A935: ??? (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4FFE49C: QStyleFactory::create(QString const&) (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97754: QApplication::style() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B1C: QApplicationPrivate::initialize() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4F97B6E: QApplicationPrivate::construct() (in /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.5.1)
+==22550==    by 0x4045F9: main (in /home/ztaal/Desktop/ludo-gui/build/ludo)
+==22550== 
+==22550== ERROR SUMMARY: 43 errors from 43 contexts (suppressed: 0 from 0)
