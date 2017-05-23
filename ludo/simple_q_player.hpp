@@ -23,10 +23,10 @@ private:
     int dice_roll;
 
     int iterations;
-    bool training = true;
-    double EXPLORE_RATE = 0.9;
-    // bool training = false;
-    // double EXPLORE_RATE = 0;
+    // bool training = true;
+    // double EXPLORE_RATE = 0.9;
+    bool training = false;
+    double EXPLORE_RATE = 0;
     double EXPLORE_RATE_DECAY;
     // double DISCOUNT_FACTOR = 0.95;
     double DISCOUNT_FACTOR = 0.4;

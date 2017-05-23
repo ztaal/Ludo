@@ -17,8 +17,6 @@ void simple_q_player::save_qtable(std::vector<std::vector<double>> &q_table, std
     std::ofstream output_file(filename.c_str());
     boost::archive::text_oarchive oa(output_file);
     oa << q_table;
-    // output_file << ss.str();
-    // output_file.close();
 }
 
 std::vector<std::vector<double>> simple_q_player::load_qtable(std::string filename)
@@ -44,47 +42,6 @@ std::vector<int> simple_q_player::input_to_state()
         state += 58 * i;
         states[i] = state;
     }
-    // for (int i = 0; i < 4; i++) {
-    //     int state = pos_start_of_turn[i] + dice_roll + 1;
-    //
-    //     // If token is able to move
-    //     if(pos_start_of_turn[i] == 0 && dice_roll != 6)
-    //         state = 0;
-    //
-    //     // If token moves past goal position
-    //     if (state > 57)
-    //         state = 58;
-    //
-    //     state += 58 * i;
-    //     states[i] = state;
-    // }
-
-    // for (int i = 0; i < 4; i++) {
-    //     int state = 0;
-    //
-    //     // If token is able to move
-    //     if(pos_start_of_turn[i] != 0 && pos_start_of_turn[i] < 99) {
-    //         state = pos_start_of_turn[i] + dice_roll + 1;
-    //         // If token moves past goal position
-    //         if (state > 56)
-    //             state = 55 - (state - 55 - 2);
-    //
-    //     // Token is in home and a 6 is rolled
-    //     } else if (pos_start_of_turn[i] == -1 && dice_roll == 6) {
-    //         state = 1;
-    //     }
-    //
-    //     // Check if there are other tokens on the new state
-    //     if (state != 0) {
-    //         int tokens_on_state = 0;
-    //         for (int j = 0; j < 4; j++)
-    //             if (pos_start_of_turn[j] == state && i != j)
-    //                 tokens_on_state++;
-    //
-    //         state += 58 * tokens_on_state;
-    //     }
-    //     states[i] = state;
-    // }
     return(states);
 }
 
@@ -240,6 +197,7 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
     }
     // Kill
     if (previous_action == 3) {
+        // reward += 0.25;
         reward += 0.15;
         // std::cout << "K,";
     }
@@ -305,15 +263,6 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
 
     // Update q-table
     if (reward != 0) {
-        // int new_state = state + dice_roll;
-        // if ((state == 0 || state % 58 == 0) && dice_roll != 6) {
-        //     new_state = 58 * decision;
-        // } else if ((state == 0 || state % 58 == 0) && dice_roll == 6) {
-        //     new_state = 58 * decision + 1;
-        // } else if (new_state - (58 * decision) > 57) {
-        //     new_state = 58 + (58 * decision);
-        // }
-        // std::cout << new_state << std::endl;
         // std::cout << "\tBefore: " << q_table[previous_action][previous_state];
         // std::cout << "Reward: " << reward << "\tBefore: " << q_table[previous_action][previous_state];
         q_table[previous_action][previous_state] += LEARNING_RATE *
@@ -380,17 +329,6 @@ int simple_q_player::make_decision()
         // std::cout << states[decision[0]] << std::endl;
         get_reward(q_table, possible_actions[decision], states[decision], decision);
     }
-
-    // std::cout << "Dice roll: " << dice_roll << "\t";
-    // for (int i = 0; i < 4; i++) {
-    //     std::vector<int> action1 = possible_actions[i];
-    //     for (auto &fisk : action1) {
-    //         std::cout << fisk << ", ";
-    //     }
-    //     std::cout << ";\t";
-    // }
-    // std::cout << std::endl;
-
 
     return decision;
 }
