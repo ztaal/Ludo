@@ -8,7 +8,21 @@ simple_q_player::simple_q_player(int _iterations):
 {
     srand (time(NULL));
     iterations = _iterations;
-    EXPLORE_RATE_DECAY = (EXPLORE_RATE / iterations) / 3;
+    // this->EXPLORE_RATE = 0.9 - ((EXPLORE_RATE / 100000) / 3) * this->test_iteration;
+    // this->EXPLORE_RATE_DECAY = (0.9 / 100000) / 3;
+    // this->EXPLORE_RATE_DECAY = (EXPLORE_RATE / iterations) / 3;
+}
+
+simple_q_player::simple_q_player(std::string filename):
+    pos_start_of_turn(16),
+    pos_end_of_turn(16),
+    dice_roll(0)
+{
+    srand (time(NULL));
+    this->filename = filename;
+    // this->EXPLORE_RATE = 0.9 - ((EXPLORE_RATE / 100000) / 3) * this->test_iteration;
+    // this->EXPLORE_RATE_DECAY = (0.9 / 100000) / 3;
+    // this->EXPLORE_RATE_DECAY = (EXPLORE_RATE / iterations) / 3;
 }
 
 void simple_q_player::save_qtable(std::vector<std::vector<double>> &q_table, std::string filename)
@@ -197,7 +211,6 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
     }
     // Kill
     if (previous_action == 3) {
-        // reward += 0.25;
         reward += 0.15;
         // std::cout << "K,";
     }
@@ -276,6 +289,7 @@ void simple_q_player::get_reward(std::vector<std::vector<double>> &q_table,
     // static bool game_saved = true;
     static bool game_saved = false;
     if (games_played == iterations - 1 && !game_saved) {
+        // std::string filename = "../simple_q_table_random" + std::to_string(iterations + this->test_iteration);
         std::string filename = "../simple_q_table" + std::to_string(iterations);
         save_qtable(q_table, filename);
         game_saved = true;
@@ -292,6 +306,9 @@ int simple_q_player::make_decision()
         for (int i = 0; i < 4; i++)
             pos_end_of_turn[i] = -1;
 
+
+        q_table = load_qtable(this->filename);
+        // q_table = load_qtable("../simple_q_table_random" + std::to_string(this->test_iteration));
         if (this->training) {
             // for(int i = 0; i < 8; i++) {
             //     for(int j = 0; j < 232; j++) {
@@ -299,7 +316,7 @@ int simple_q_player::make_decision()
             //     }
             // }
         } else {
-            q_table = load_qtable("../simple_q_table100000");
+            // q_table = load_qtable("../simple_q_table25");
             // for(int j = 0; j < 232; j++) {
             //     if (j % 58 == 0 || j == 0) {
             //         std::cout << "\nNext player\n";

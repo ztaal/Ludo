@@ -27,10 +27,11 @@ private:
     // double EXPLORE_RATE = 0.9;
     bool training = false;
     double EXPLORE_RATE = 0;
+    // int test_iteration = 100000;
     double EXPLORE_RATE_DECAY;
-    // double DISCOUNT_FACTOR = 0.95;
     double DISCOUNT_FACTOR = 0.4;
     double LEARNING_RATE = 0.7;
+    std::string filename;
     int make_decision();
 
     std::vector<int> input_to_state();
@@ -45,6 +46,7 @@ private:
     void save_qtable(std::vector<std::vector<double>> &q_table, std::string filename);
 public:
     simple_q_player(int);
+    simple_q_player(std::string);
 signals:
     void select_piece(int);
     void turn_complete(bool);
