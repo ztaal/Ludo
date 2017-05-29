@@ -23,21 +23,29 @@ private:
     int dice_roll;
 
     int iterations;
+    // bool training = true;
     // double EXPLORE_RATE = 0.9;
+    bool training = false;
     double EXPLORE_RATE = 0;
     double EXPLORE_RATE_DECAY;
-    double DISCOUNT_FACTOR = 0.95;
-    double LEARNING_RATE = 0.5;
+    double DISCOUNT_FACTOR = 0.4;
+    double LEARNING_RATE = 0.7;
+    std::string filename;
     int make_decision();
-    void get_reward(std::vector<std::vector<double>> &q_table,
-        std::vector<int> pos_previous_turn, int action, int state);
+
     std::vector<int> input_to_state();
-    int get_action(std::vector<std::vector<double>> q_table,
-        std::vector<int> states);
+    std::vector<int> get_actions();
+    int select_action(std::vector<std::vector<double>> q_table,
+        std::vector<int> states, std::vector<int> possible_actions);
+
+    void get_reward(std::vector<std::vector<double>> &q_table,
+         int action, int state, int decision);
+
     std::vector<std::vector<double>> load_qtable(std::string filename);
     void save_qtable(std::vector<std::vector<double>> &q_table, std::string filename);
 public:
     q_player(int);
+    q_player(std::string);
 signals:
     void select_piece(int);
     void turn_complete(bool);
@@ -45,3 +53,13 @@ public slots:
     void start_turn(positions_and_dice relative);
     void post_game_analysis(std::vector<int> relative_pos);
 };
+
+// Actions
+// No action 0
+// Move out of home 1
+// Move 2
+// Kill 3
+// Suicide 4
+// Form Blockade 5
+// Protect token 6
+// Move into goal 7

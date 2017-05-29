@@ -30,13 +30,11 @@ SOURCES += main.cpp\
     ludo_player.cpp \
     ludo_player_random.cpp \
     q_player.cpp \
-    simple_q_player.cpp \
 
 HEADERS  += dialog.h \
     game.h \
     ludo_player.h \
     q_player.hpp \
-    simple_q_player.hpp \
     positions_and_dice.h \
     ludo_player_random.h \
 

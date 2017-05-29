@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = ludo1.0.0
-DISTDIR = /home/ztaal/Desktop/ludo-gui/build/.tmp/ludo1.0.0
+DISTDIR = /home/ztaal/Desktop/Ludo/build/.tmp/ludo1.0.0
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1
 LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -L/usr/lib64 -L/usr/local -L/usr -lboost_thread -lboost_system -lboost_iostreams -lboost_serialization -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -53,12 +53,10 @@ SOURCES       = ../ludo/main.cpp \
 		../ludo/game.cpp \
 		../ludo/ludo_player.cpp \
 		../ludo/ludo_player_random.cpp \
-		../ludo/q_player.cpp \
-		../ludo/simple_q_player.cpp moc_dialog.cpp \
+		../ludo/q_player.cpp moc_dialog.cpp \
 		moc_game.cpp \
 		moc_ludo_player.cpp \
 		moc_q_player.cpp \
-		moc_simple_q_player.cpp \
 		moc_ludo_player_random.cpp
 OBJECTS       = main.o \
 		dialog.o \
@@ -66,12 +64,10 @@ OBJECTS       = main.o \
 		ludo_player.o \
 		ludo_player_random.o \
 		q_player.o \
-		simple_q_player.o \
 		moc_dialog.o \
 		moc_game.o \
 		moc_ludo_player.o \
 		moc_q_player.o \
-		moc_simple_q_player.o \
 		moc_ludo_player_random.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -164,15 +160,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../ludo/game.h \
 		../ludo/ludo_player.h \
 		../ludo/q_player.hpp \
-		../ludo/simple_q_player.hpp \
 		../ludo/positions_and_dice.h \
 		../ludo/ludo_player_random.h ../ludo/main.cpp \
 		../ludo/dialog.cpp \
 		../ludo/game.cpp \
 		../ludo/ludo_player.cpp \
 		../ludo/ludo_player_random.cpp \
-		../ludo/q_player.cpp \
-		../ludo/simple_q_player.cpp
+		../ludo/q_player.cpp
 QMAKE_TARGET  = ludo
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = ludo
@@ -400,8 +394,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../ludo/dialog.h ../ludo/game.h ../ludo/ludo_player.h ../ludo/q_player.hpp ../ludo/simple_q_player.hpp ../ludo/positions_and_dice.h ../ludo/ludo_player_random.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ludo/main.cpp ../ludo/dialog.cpp ../ludo/game.cpp ../ludo/ludo_player.cpp ../ludo/ludo_player_random.cpp ../ludo/q_player.cpp ../ludo/simple_q_player.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ludo/dialog.h ../ludo/game.h ../ludo/ludo_player.h ../ludo/q_player.hpp ../ludo/positions_and_dice.h ../ludo/ludo_player_random.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ludo/main.cpp ../ludo/dialog.cpp ../ludo/game.cpp ../ludo/ludo_player.cpp ../ludo/ludo_player_random.cpp ../ludo/q_player.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ludo/dialog.ui $(DISTDIR)/
 
 
@@ -425,33 +419,29 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_dialog.cpp moc_game.cpp moc_ludo_player.cpp moc_q_player.cpp moc_simple_q_player.cpp moc_ludo_player_random.cpp
+compiler_moc_header_make_all: moc_dialog.cpp moc_game.cpp moc_ludo_player.cpp moc_q_player.cpp moc_ludo_player_random.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_dialog.cpp moc_game.cpp moc_ludo_player.cpp moc_q_player.cpp moc_simple_q_player.cpp moc_ludo_player_random.cpp
+	-$(DEL_FILE) moc_dialog.cpp moc_game.cpp moc_ludo_player.cpp moc_q_player.cpp moc_ludo_player_random.cpp
 moc_dialog.cpp: ../ludo/game.h \
 		../ludo/positions_and_dice.h \
 		../ludo/dialog.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/ludo-gui/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/dialog.h -o moc_dialog.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/Ludo/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/dialog.h -o moc_dialog.cpp
 
 moc_game.cpp: ../ludo/positions_and_dice.h \
 		../ludo/game.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/ludo-gui/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/game.h -o moc_game.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/Ludo/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/game.h -o moc_game.cpp
 
 moc_ludo_player.cpp: ../ludo/positions_and_dice.h \
 		../ludo/ludo_player.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/ludo-gui/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/ludo_player.h -o moc_ludo_player.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/Ludo/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/ludo_player.h -o moc_ludo_player.cpp
 
 moc_q_player.cpp: ../ludo/positions_and_dice.h \
 		../ludo/q_player.hpp
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/ludo-gui/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/q_player.hpp -o moc_q_player.cpp
-
-moc_simple_q_player.cpp: ../ludo/positions_and_dice.h \
-		../ludo/simple_q_player.hpp
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/ludo-gui/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/simple_q_player.hpp -o moc_simple_q_player.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/Ludo/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/q_player.hpp -o moc_q_player.cpp
 
 moc_ludo_player_random.cpp: ../ludo/positions_and_dice.h \
 		../ludo/ludo_player_random.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/ludo-gui/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/ludo_player_random.h -o moc_ludo_player_random.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/ztaal/Desktop/Ludo/ludo -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../ludo/ludo_player_random.h -o moc_ludo_player_random.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -475,7 +465,6 @@ main.o: ../ludo/main.cpp ../ludo/dialog.h \
 		../ludo/game.h \
 		../ludo/positions_and_dice.h \
 		../ludo/q_player.hpp \
-		../ludo/simple_q_player.hpp \
 		../ludo/ludo_player.h \
 		../ludo/ludo_player_random.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ludo/main.cpp
@@ -502,10 +491,6 @@ q_player.o: ../ludo/q_player.cpp ../ludo/q_player.hpp \
 		../ludo/positions_and_dice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o q_player.o ../ludo/q_player.cpp
 
-simple_q_player.o: ../ludo/simple_q_player.cpp ../ludo/simple_q_player.hpp \
-		../ludo/positions_and_dice.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o simple_q_player.o ../ludo/simple_q_player.cpp
-
 moc_dialog.o: moc_dialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialog.o moc_dialog.cpp
 
@@ -517,9 +502,6 @@ moc_ludo_player.o: moc_ludo_player.cpp
 
 moc_q_player.o: moc_q_player.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_q_player.o moc_q_player.cpp
-
-moc_simple_q_player.o: moc_simple_q_player.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_simple_q_player.o moc_simple_q_player.cpp
 
 moc_ludo_player_random.o: moc_ludo_player_random.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ludo_player_random.o moc_ludo_player_random.cpp

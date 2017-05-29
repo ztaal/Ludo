@@ -3,7 +3,6 @@
 #include "game.h"
 #include <vector>
 #include "q_player.hpp"
-#include "simple_q_player.hpp"
 #include "ludo_player.h"
 #include "ludo_player_random.h"
 #include "positions_and_dice.h"
@@ -16,15 +15,10 @@ int main(int argc, char *argv[]) {
     qRegisterMetaType<positions_and_dice>();
 
     //instanciate the players here
-    // ludo_player p2, p3, p4;
+    ludo_player p2, p3, p4;
     // ludo_player_random p2, p3, p4;
 
-    // q_player p1(atoi(argv[1]));
-    // simple_q_player p1(atoi(argv[1]));
-    simple_q_player p1("../simple_q_table85000");
-    simple_q_player p2("../simple_q_table85000");
-    simple_q_player p3("../simple_q_table_random90000");
-    simple_q_player p4("../simple_q_table_random90000");
+    q_player p1(atoi(argv[1]));
 
     game g;
     g.setGameDelay(0); //if you want to see the game, set a delay
@@ -48,10 +42,6 @@ int main(int argc, char *argv[]) {
     QObject::connect(&p1,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
     QObject::connect(&g, SIGNAL(player1_end(std::vector<int>)),    &p1,SLOT(post_game_analysis(std::vector<int>)));
     QObject::connect(&p1,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
-    // QObject::connect(&g, SIGNAL(player1_start(positions_and_dice)),&p1,SLOT(start_turn(positions_and_dice)));
-    // QObject::connect(&p1,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
-    // QObject::connect(&g, SIGNAL(player1_end(std::vector<int>)),    &p1,SLOT(post_game_analysis(std::vector<int>)));
-    // QObject::connect(&p1,SIGNAL(turn_complete(bool)),              &g, SLOT(turnComplete(bool)));
 
     QObject::connect(&g, SIGNAL(player2_start(positions_and_dice)),&p2,SLOT(start_turn(positions_and_dice)));
     QObject::connect(&p2,SIGNAL(select_piece(int)),                &g, SLOT(movePiece(int)));
